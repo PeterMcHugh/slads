@@ -10,6 +10,8 @@
     "angular-sanitize": "1.2.15",
     "angular-route": "1.2.15",
     "angular-strap": "~2.0.2",
+    "parse-js-sdk": "~1.2.16",
+    "parse-angular-patch": "*",
     "Bootflat": "~2.0.1"
   },
   "devDependencies": {
