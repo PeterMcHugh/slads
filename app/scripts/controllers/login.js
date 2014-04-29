@@ -1,23 +1,23 @@
-(function (angular, Parse) {
+(function (angular) {
     'use strict';
 
     var module = angular.module('sladsApp');
 
-    module.controller('LoginCtrl', function ($scope, $location) {
+    module.controller('LoginCtrl', function ($scope, $location, parseService) {
 
-        $scope.formError = "";
+        $scope.formError = '';
 
         $scope.login = function (username, password) {
-            Parse.User.logIn(username, password, {
-                success: function (user) {
-                    $scope.formError = "";
-                    $location.path('/');
+            parseService.login(username, password, {
+                success: function () {
+                  $scope.formError = '';
+                  $location.path('/');
                 },
                 error: function (user, error) {
-                    $scope.formError = error.message;
+                  $scope.formError = error.message;
                 }
               });
           };
       });
 
-  }(this.angular, this.Parse));
+  }(this.angular));
