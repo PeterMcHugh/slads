@@ -27,9 +27,16 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ul>
-                <li ng-repeat="match in matches">{{match}}</li>
-            </ul>
+            <table class="table">
+                <thead>
+                    <tr><th>Winner</th><th>Loser</th></tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="match in matches">
+                        <td>{{match.getWinner().getFirstName()}}</td><td>{{match.getLoser().getFirstName()}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="row">
