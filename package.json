@@ -1,6 +1,10 @@
 {
   "name": "slads",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/v3rm0n/slads.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -31,7 +35,7 @@
     "grunt-karma": "~0.8.3",
     "karma": "^0.12.14",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-jasmine": "^0.1.5"
+    "karma-jasmine": "0.1.5"
   },
   "engines": {
     "node": ">=0.10.0"
