@@ -3,7 +3,7 @@
 
   var API = 'https://api.parse.com/1';
 
-  var app = angular.module('sladsApp', ['ngSanitize', 'ngRoute', 'ngResource', 'ngCookies', 'mgcrea.ngStrap'])
+  var app = angular.module('sladsApp', ['ngSanitize', 'ngRoute', 'ngResource', 'ngCookies', 'ngAnimate', 'mgcrea.ngStrap'])
   .config(function ($routeProvider) {
     $routeProvider
     .when('/', {templateUrl: 'views/login.html', controller: 'LoginCtrl', resolve: {

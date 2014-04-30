@@ -12,7 +12,9 @@
     "angular-resource": "~1.2.16",
     "angular-strap": "~2.0.2",
     "angular-cookies": "1.2.16",
-    "Bootflat": "~2.0.1"
+    "Bootflat": "~2.0.1",
+    "angular-animate": "~1.2.16",
+    "angular-motion": "~0.3.2"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
