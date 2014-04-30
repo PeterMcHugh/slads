@@ -71,23 +71,23 @@
 </div>
 
 <div class="container" ng-controller="OrdersCtrl" ng-show="page == 'orders'" class="ng-hide">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Breakfast Orders</h1>
-            <table class="table">
-                <thead>
-                    <tr><th>#</th><th>Name</th><th>Content</th></tr>
-                </thead>
-                <tbody ng-repeat="order in orders">
-                    <tr>
-                        <td ng-bind="$index+1"></td>
-                        <td ng-bind="order.getUser().get('username')"></td>
-                        <td ng-bind="order.getContent()"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button ng-click="order()" type="button" class="btn btn-primary" hide-fullscreen>Order</button>
-            <button ng-click="clear()" type="button" class="btn btn-danger" hide-fullscreen>Clear orders</button>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Breakfast Orders</h1>
+      <table class="table">
+        <thead>
+          <tr><th>#</th><th>Name</th><th>Content</th></tr>
+        </thead>
+        <tbody ng-repeat="order in orders">
+          <tr>
+            <td ng-bind="$index+1"></td>
+            <td ng-bind="order.getUser().get('username')"></td>
+            <td ng-bind="order.getContent()"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button ng-click="order()" type="button" class="btn btn-primary" hide-fullscreen>Order</button>
+      <button ng-click="clear()" type="button" class="btn btn-danger" hide-fullscreen>Clear orders</button>
     </div>
+  </div>
 </div>
