@@ -12,7 +12,7 @@
             <label for="field_{{$index}}" class="control-label col-sm-3" ng-bind="field.label"></label>
             <div class="col-sm-4">
               <input ng-show="field.type === 'number'" id="field_{{$index}}" type="number" placeholder="0" ng-model="field.value" class="form-control"/>
-              <input ng-show="field.type === 'text'" id="field_{{$index}}" type="text" placeholder="Toote nimi" ng-model="field.value" class="form-control"/>
+              <input ng-show="field.type === 'text'" id="field_{{$index}}" type="text" placeholder="{{field.placeholder || ''}}" ng-model="field.value" class="form-control"/>
               <select ng-show="field.type === 'select'" id="field_{{$index}}" ng-model="field.value" ng-options="value.id as value.name for value in field.values" required="required" class="form-control"></select>
             </div>
           </div>

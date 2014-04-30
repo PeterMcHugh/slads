@@ -151,8 +151,8 @@
           var lastName = player ? player.getLastName() : undefined;
                       
           var fields = [
-            {label: 'First name', type: 'text', value: firstName},
-            {label: 'Last name', type: 'text', value: lastName}
+            {label: 'First name', type: 'text', value: firstName, placeholder: 'First name'},
+            {label: 'Last name', type: 'text', value: lastName, placeholder: 'Last name'}
           ];
           
           modalScope.fields = fields;
