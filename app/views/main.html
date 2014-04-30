@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" hide-fullscreen>
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -11,7 +11,8 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#">FIFA Ladder</a></li>
+        <li ng-class="{active: page =='ladder'}"><a href="#/main" ng-click="showPage('ladder')">FIFA Ladder</a></li>
+        <li ng-class="{active: page =='orders'}"><a href="#/main" ng-click="showPage('orders')">Breakfast Orders</a></li>
       </ul>
       <button ng-click="logout()" type="button" class="btn btn-danger navbar-btn navbar-right">Sign out</button>
       <p class="navbar-text navbar-right">Signed in as {{currentUser.get('username')}}&nbsp;</p>
@@ -19,13 +20,13 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" ng-controller="LadderCtrl" ng-show="page == 'ladder'" class="ng-hide">
     <div class="row">
         <div class="col-md-12">
             <h1>Ladder</h1>
             <table class="table">
                 <thead>
-                    <tr><th>Position</th><th>Name</th><th>Wins</th><th>Losses</th><th>Played</th><th>Goals For</th><th>Goals Against</th><th>Goal Difference</th><th>WP</th></tr>
+                    <tr><th>#</th><th>Name</th><th>Wins</th><th>Losses</th><th>Played</th><th>Goals For</th><th>Goals Against</th><th>Goal Difference</th><th>WP</th></tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="element in ladder" ng-class="{success: element.wp > 75, warning: element.wp <= 75 && element.wp > 25, danger: element.wp <= 25}">
@@ -36,7 +37,7 @@
             </table>
         </div>
     </div>    
-    <div class="row">
+    <div class="row" hide-fullscreen>
         <div class="col-md-6">
             <h1>Matches</h1>
             <table class="table table-hover">
@@ -65,6 +66,48 @@
                 </tbody>
             </table>
             <button ng-click="openPlayerModal()" type="button" class="btn btn-primary">Add player</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-controller="OrdersCtrl" ng-show="page == 'orders'" class="ng-hide">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Breakfast Orders</h1>
+            <table class="table">
+                <thead>
+                    <tr><th>#</th><th>Name</th><th>Products</th></tr>
+                </thead>
+                <tbody ng-repeat="order in orders">
+                    <tr>
+                        <td ng-bind="$index+1" rowspan="{{order.getProducts().length}}"></td>
+                        <td ng-bind="order.getUser().get('username')" rowspan="{{order.getProducts().length}}"></td>
+                    </tr>
+                    <tr ng-repeat="product in order.getProducts()">
+                        <td ng-bind="product.getName()"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button ng-click="order()" type="button" class="btn btn-primary" hide-fullscreen>Order</button>
+            <button ng-click="clear()" type="button" class="btn btn-danger" hide-fullscreen>Clear orders</button>
+        </div>
+    </div>
+    <div class="row" hide-fullscreen>
+        <div class="col-md-6">
+            <h1>Products</h1>
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>#</th><th>Name</th><th>Price</th></tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in products" ng-click="openProductModal(product)">
+                        <td ng-bind="$index+1"></td>
+                        <td ng-bind="product.getName()"></td>
+                        <td ng-bind="product.getPrice()"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button ng-click="openProductModal()" type="button" class="btn btn-primary">Add product</button>
         </div>
     </div>
 </div>

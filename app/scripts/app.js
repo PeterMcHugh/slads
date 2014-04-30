@@ -12,7 +12,21 @@
           .when('/main', {templateUrl: 'views/main.html', controller: 'MainCtrl'})
           .when('/modal', {templateUrl: 'views/modal.html'})
           .otherwise({redirectTo: '/'});
-      });
+    });
+  
+    app.directive('hideFullscreen', function ($window) {
+        return {
+            link: function (scope, element) {
+              angular.element($window).bind('resize', function() {
+                if (($window.fullScreen) || ($window.innerWidth == $window.screen.width && $window.innerHeight == $window.screen.height)) {
+                  element.addClass('ng-hide');
+                } else {
+                  element.removeClass('ng-hide');
+                }
+              });
+            }
+        };
+    });
 
     app.factory('parseService', function () {
       return {
