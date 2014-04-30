@@ -15,59 +15,77 @@
         <li ng-class="{active: page =='orders'}"><a href="#/main" ng-click="showPage('orders')">Breakfast Orders</a></li>
       </ul>
       <button ng-click="logout()" type="button" class="btn btn-danger navbar-btn navbar-right">Sign out</button>
-      <p class="navbar-text navbar-right">Signed in as {{currentUser.get('username')}}&nbsp;</p>
+      <p class="navbar-text navbar-right">Signed in as <span ng-bind="currentUser.get('username')"></span>&nbsp;</p>
     </div>
   </div>
 </div>
 
 <div class="container" ng-controller="LadderCtrl" ng-show="page == 'ladder'" class="ng-hide">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Ladder</h1>
-            <table class="table">
-                <thead>
-                    <tr><th>#</th><th>Name</th><th>Wins</th><th>Losses</th><th>Played</th><th>Goals For</th><th>Goals Against</th><th>Goal Difference</th><th>WP</th></tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="element in ladder" ng-class="{success: element.wp > 75, warning: element.wp <= 75 && element.wp > 25, danger: element.wp <= 25}">
-                        <td>{{element.name === 'Allen Wallis' ? 'Allen' : $index+1}}<td>{{element.name}}</td><td>{{element.wins}}</td>
-                        <td>{{element.losses}}</td><td>{{element.played}}</td><td>{{element.for}}</td><td>{{element.against}}</td><td>{{element.gd}}</td><td>{{element.wp}}%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>FIFA Ladder</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Played</th>
+            <th>Goals For</th>
+            <th>Goals Against</th>
+            <th>Goal Difference</th>
+            <th>WP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="element in ladder" ng-class="{success: element.wp > 75, warning: element.wp <= 75 && element.wp > 25, danger: element.wp <= 25}">
+            <td ng-bind-template="{{element.name === 'Allen Wallis' ? 'Allen' : $index+1}}"></td>
+            <td ng-bind="element.name"></td>
+            <td ng-bind="element.wins"></td>
+            <td ng-bind="element.losses"></td>
+            <td ng-bind="element.played"></td>
+            <td ng-bind="element.for"></td>
+            <td ng-bind="element.against"></td>
+            <td ng-bind="element.gd"></td>
+            <td ng-bind-template="{{element.wp + '%'}}"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="row" hide-fullscreen>
-        <div class="col-md-6">
-            <h1>Matches</h1>
-            <table class="table table-hover">
-                <thead>
-                    <tr><th>#</th><th>Match</th></tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="match in matches" class="text-center" ng-click="openMatchModal(match)">
-                        <td ng-bind="$index+1"></td>
-                        <td>{{playerName(match.getWinner()) + ' ' + match.get('winner_goals') + '-' + match.get('loser_goals') + ' ' + playerName(match.getLoser())}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button ng-click="openMatchModal()" type="button" class="btn btn-primary">Add match</button>
-        </div>
-        <div class="col-md-6">
-            <h1>Players</h1>
-            <table class="table table-hover">
-                <thead>
-                    <tr><th>First name</th><th>Last name</th></tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="player in players" ng-click="openPlayerModal(player)">
-                        <td>{{player.getFirstName()}}</td><td>{{player.getLastName()}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button ng-click="openPlayerModal()" type="button" class="btn btn-primary">Add player</button>
-        </div>
+  </div>
+  <div class="row" hide-fullscreen>
+    <div class="col-md-6">
+      <h1>Matches</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr><th>#</th><th>Match</th></tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="match in matches" class="text-center" ng-click="openMatchModal(match)">
+            <td ng-bind="$index+1"></td>
+            <td ng-bind="matchData(match)"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button ng-click="openMatchModal()" type="button" class="btn btn-primary">Add match</button>
     </div>
+    <div class="col-md-6">
+      <h1>Players</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr><th>First name</th><th>Last name</th></tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="player in players" ng-click="openPlayerModal(player)">
+            <td ng-bind="player.getFirstName()"></td>
+            <td ng-bind="player.getLastName()"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button ng-click="openPlayerModal()" type="button" class="btn btn-primary">Add player</button>
+    </div>
+  </div>
 </div>
 
 <div class="container" ng-controller="OrdersCtrl" ng-show="page == 'orders'" class="ng-hide">

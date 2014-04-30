@@ -36,6 +36,10 @@
       return player.getFirstName() + ' ' + player.getLastName();
     };
 
+    $scope.matchData = function (match) {
+      return playerName(match.getWinner()) + ' ' + match.get('winner_goals') + '-' + match.get('loser_goals') + ' ' + playerName(match.getLoser());
+    };
+
     var updateLadder = function () {
       $scope.ladder = [];
       var ladder = $scope.players.map(function(player){
