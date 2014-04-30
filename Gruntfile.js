@@ -371,6 +371,15 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+    
+    exec: {
+      init: {
+        cmd: 'npm install && bower install'
+      },
+      deploy: {
+        cmd: 'git subtree push --prefix dist origin gh-pages'
+      }
     }
   });
 
@@ -424,5 +433,14 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+  
+  //Custom tasks
+  grunt.registerTask('init', [
+    'exec:init'
+  ]);
+  
+  grunt.registerTask('deploy', [
+    'exec:deploy'
   ]);
 };

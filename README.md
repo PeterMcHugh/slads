@@ -13,15 +13,15 @@ To build and run the project you first need [Node.js](http://nodejs.org/) and [C
 
 ### Development
 
-To start serving files while watcing for changes you need to run `npm install`, `bower install` and then `grunt serve`
+To start serving files while watcing for changes you need to run `grunt init` and then `grunt serve`
 
 ### Building
 
-To build the project you need to run `grunt build`
+To build the project for publishing you need to run `grunt build`
 
 ### Publishing
 
-To publish the built content as Github Project Pages run `git subtree push --prefix dist origin gh-pages`
+To publish the content as Github Project Pages commit the *dist* dir after building and then run `grunt deploy`
 
 ## More information
 
