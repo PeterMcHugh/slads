@@ -1,4 +1,4 @@
-(function (angular, Parse) {
+(function (angular) {
     'use strict';
 
     var module = angular.module('sladsApp');
@@ -19,4 +19,4 @@
       
     });
 
-  }(this.angular, this.Parse));
+  }(this.angular));
