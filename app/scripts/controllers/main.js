@@ -12,10 +12,15 @@
         $scope.matches = [];
 
         var Player = Parse.Object.extend({className: 'Player', attrs: ['firstName', 'lastName']});
-        var query = new Parse.Query(Player);
-        query.find().then(function (results) {
-          $scope.players = results;
-        });
+      
+        var queryForPlayers = function () {
+          var query = new Parse.Query(Player);
+          query.find().then(function (results) {
+            $scope.players = results;
+          });
+        };
+      
+        queryForPlayers();
 
         var Match = Parse.Object.extend({className: 'Match', attrs: ['winner', 'loser']});
       
@@ -111,7 +116,7 @@
           modalScope.fields = fields;
 
           var d = $modal({
-            template: '/views/modal.html',
+            template: 'views/modal.html',
             scope: modalScope
           });
 
@@ -130,6 +135,41 @@
                   
             m.save(null, {
               success: function (){
+                queryForMatches();
+                d.hide();
+              }
+            });
+          };
+        };
+      
+        $scope.openPlayerModal = function (player) {
+
+          var modalScope = $scope.$new();
+          modalScope.title = 'Player';
+          
+          var firstName = player ? player.getFirstName() : undefined;
+          var lastName = player ? player.getLastName() : undefined;
+                      
+          var fields = [
+            {label: 'First name', type: 'text', value: firstName},
+            {label: 'Last name', type: 'text', value: lastName}
+          ];
+          
+          modalScope.fields = fields;
+
+          var d = $modal({
+            template: 'views/modal.html',
+            scope: modalScope
+          });
+
+          modalScope.save = function (fields) {
+            var m = player || new Player();
+            m.set('firstName', fields[0].value);
+            m.set('lastName', fields[1].value);
+                          
+            m.save(null, {
+              success: function (){
+                queryForPlayers();
                 queryForMatches();
                 d.hide();
               }

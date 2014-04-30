@@ -9,7 +9,7 @@
         <p ng-show="error" class="bg-danger">{{error}}</p>
         <form role="form" ng-submit="save(model)" class="form-horizontal">
           <div class="form-group" ng-repeat="field in fields">
-            <label for="field_{{$index}}" class="control-label col-sm-2" ng-bind="field.label"></label>
+            <label for="field_{{$index}}" class="control-label col-sm-3" ng-bind="field.label"></label>
             <div class="col-sm-4">
               <input ng-show="field.type === 'number'" id="field_{{$index}}" type="number" placeholder="0" ng-model="field.value" class="form-control"/>
               <input ng-show="field.type === 'text'" id="field_{{$index}}" type="text" placeholder="Toote nimi" ng-model="field.value" class="form-control"/>
