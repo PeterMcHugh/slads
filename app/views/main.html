@@ -36,7 +36,7 @@
                 </tbody>
             </table>
         </div>
-    </div>    
+    </div>
     <div class="row" hide-fullscreen>
         <div class="col-md-6">
             <h1>Matches</h1>
@@ -76,38 +76,18 @@
             <h1>Breakfast Orders</h1>
             <table class="table">
                 <thead>
-                    <tr><th>#</th><th>Name</th><th>Products</th></tr>
+                    <tr><th>#</th><th>Name</th><th>Content</th></tr>
                 </thead>
                 <tbody ng-repeat="order in orders">
                     <tr>
-                        <td ng-bind="$index+1" rowspan="{{order.getProducts().length}}"></td>
-                        <td ng-bind="order.getUser().get('username')" rowspan="{{order.getProducts().length}}"></td>
-                    </tr>
-                    <tr ng-repeat="product in order.getProducts()">
-                        <td ng-bind="product.getName()"></td>
+                        <td ng-bind="$index+1"></td>
+                        <td ng-bind="order.getUser().get('username')"></td>
+                        <td ng-bind="order.getContent()"></td>
                     </tr>
                 </tbody>
             </table>
             <button ng-click="order()" type="button" class="btn btn-primary" hide-fullscreen>Order</button>
             <button ng-click="clear()" type="button" class="btn btn-danger" hide-fullscreen>Clear orders</button>
-        </div>
-    </div>
-    <div class="row" hide-fullscreen>
-        <div class="col-md-6">
-            <h1>Products</h1>
-            <table class="table table-hover">
-                <thead>
-                    <tr><th>#</th><th>Name</th><th>Price</th></tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="product in products" ng-click="openProductModal(product)">
-                        <td ng-bind="$index+1"></td>
-                        <td ng-bind="product.getName()"></td>
-                        <td ng-bind="product.getPrice()"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button ng-click="openProductModal()" type="button" class="btn btn-primary">Add product</button>
         </div>
     </div>
 </div>
