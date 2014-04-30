@@ -13,7 +13,7 @@ To build and run the project you first need [Node.js](http://nodejs.org/) and [C
 
 ### Development
 
-To start serving files while watcing for changes you need to run `grunt serve`
+To start serving files while watcing for changes you need to run `npm install`, `bower install` and then `grunt serve`
 
 ### Building
 
