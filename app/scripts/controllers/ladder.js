@@ -78,6 +78,12 @@
 
     $scope.playerName = playerName;
 
+    var error = function (scope) {
+      return function (response) {
+        scope.error = response.data.error;
+      };
+    };
+
     $scope.openMatchModal = function (match) {
 
       var modalScope = $scope.$new();
@@ -113,8 +119,8 @@
         m.winnerGoals = fields[1].value;
         m.loserGoals = fields[3].value;
 
-        m.winner = fields[0].value;
-        m.loser = fields[2].value;
+        m.winner = {__type: 'Pointer', className: 'Player', objectId: fields[0].value};
+        m.loser = {__type: 'Pointer', className: 'Player', objectId: fields[2].value};
 
         var success = function (){
           queryForMatches();
@@ -122,9 +128,9 @@
         };
 
         if(m.objectId) {
-          m.$save(success);
+          m.$update(success, error(modalScope));
         } else {
-          m.update(success);
+          m.$save(success, error(modalScope));
         }
 
       };
@@ -162,9 +168,9 @@
         };
 
         if(m.objectId){
-          m.$update(success);
+          m.$update(success, error(modalScope));
         } else {
-          m.$save(success);
+          m.$save(success, error(modalScope));
         }
 
       };
