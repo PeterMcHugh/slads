@@ -35,7 +35,7 @@
 
         parseService.currentUser().success(function(user){
           var order = new model.Order();
-          
+
           order.user = {__type: 'Pointer', className: '_User', objectId: user.objectId};
           order.content = fields[0].value;
 
@@ -45,7 +45,6 @@
           });
 
         });
-
 
       };
     };

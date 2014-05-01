@@ -3,14 +3,17 @@
 
   var module = angular.module('sladsApp');
 
-  module.controller('MainCtrl', function ($scope, parseService) {
+  module.controller('MainCtrl', function ($scope, $location, parseService) {
 
-    $scope.currentUser = parseService.currentUser();
+    parseService.currentUser(function (user) {
+      $scope.currentUser = user;
+    });
 
     $scope.page = 'ladder';
 
     $scope.logout = function () {
       parseService.logout();
+      $location.path('/');
     };
 
     $scope.showPage = function(page) {

@@ -25,8 +25,9 @@
       return playerName(match.winner) + ' ' + match.winnerGoals + '-' + match.loserGoals + ' ' + playerName(match.loser);
     };
 
+    $scope.ladder = [];
+
     var updateLadder = function () {
-      $scope.ladder = [];
       var ladder = $scope.players.map(function(player){
         var elem = {name: playerName(player)};
 

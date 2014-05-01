@@ -15,7 +15,7 @@
         <li ng-class="{active: page =='orders'}"><a href="#/main" ng-click="showPage('orders')">Breakfast Orders</a></li>
       </ul>
       <button ng-click="logout()" type="button" class="btn btn-danger navbar-btn navbar-right">Sign out</button>
-      <p class="navbar-text navbar-right">Signed in as <span ng-bind="currentUser.get('username')"></span>&nbsp;</p>
+      <p class="navbar-text navbar-right">Signed in as <span ng-bind="currentUser.username"></span>&nbsp;</p>
     </div>
   </div>
 </div>
