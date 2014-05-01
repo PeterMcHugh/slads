@@ -5,7 +5,7 @@
 
 ## Information
 
-Custom data services using [Parse.com](http://parse.com) built with [Yeoman](http://yeoman.io/) using [angular generator](https://github.com/yeoman/generator-angular).
+Custom data services using [Parse.com](http://parse.com) REST interface built with [Yeoman](http://yeoman.io/) using [angular generator](https://github.com/yeoman/generator-angular).
 
 ## Getting started
 
@@ -27,11 +27,10 @@ To publish the content as Github Project Pages commit the *dist* dir after build
 
 In addition to stuff that comes with the Yeoman angular generator the project also uses:
 
-- [Bootstrap](http://getbootstrap.com/) as a front-end framework.
+- [Bootstrap](http://getbootstrap.com/) front-end framework.
 - [Bootflat](http://bootflat.github.io/) nice looking flat theme for Bootstrap.
-- [AngularStrap](http://mgcrea.github.io/angular-strap/) for nice native Bootstrap directives for Angular.
-- [parse-js-sdk](https://github.com/albemuth/parse-js-sdk) Parse.com JS API as a Bower module.
-- [parse-angular-patch](https://github.com/brandid/parse-angular-patch) for seamless Parse.com Angular integration.
+- [AngularStrap](http://mgcrea.github.io/angular-strap/) native Bootstrap directives for Angular.
+- [AngularMotion](http://mgcrea.github.io/angular-motion/) Angular animation CSS3 provider.
 
 ## License
 
