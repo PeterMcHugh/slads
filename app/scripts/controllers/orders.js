@@ -1,23 +1,16 @@
-(function (angular, Parse) {
+(function (angular) {
   'use strict';
 
   var module = angular.module('sladsApp');
 
-  module.controller('OrdersCtrl', function ($scope, parseService, $modal) {
+  module.controller('OrdersCtrl', function ($scope, $modal, parseService, model) {
 
     $scope.orders = [];
 
     $scope.products = [];
 
-    var Order = Parse.Object.extend({className: 'Order', attrs: ['user', 'content']});
-
-    var query = new Parse.Query(Order);
-
     var queryForOrders = function () {
-      query.include('user');
-      query.find().then(function (results) {
-        $scope.orders = results;
-      });
+      $scope.orders = model.Order.query();
     };
 
     queryForOrders();
@@ -39,38 +32,39 @@
       });
 
       modalScope.save = function (fields) {
-        var order = new Order();
 
-        order.set('user', parseService.currentUser());
-        order.set('content', fields[0].value);
+        parseService.currentUser().success(function(user){
+          var order = new model.Order();
+          
+          order.user = {__type: 'Pointer', className: '_User', objectId: user.objectId};
+          order.content = fields[0].value;
 
-        order.save(null, {
-          success: function (){
+          order.$save(function () {
             queryForOrders();
             d.hide();
-          }
+          });
+
         });
+
+
       };
     };
 
     $scope.clear = function () {
-      query.find().then(function (results) {
-        var destroy = function (results) {
-          if(results.length > 0) {
-            var order = results.pop();
-            order.destroy({
-              success: function () {
-                destroy(results);
-              }
-            });
-          } else {
-            queryForOrders();
-          }
-        };
-        destroy(results);
-      });
+      var destroy = function (results) {
+        if(results.length > 0) {
+          var order = results.pop();
+          console.log(order);
+          order.$remove(function () {
+            destroy(results);
+          });
+        } else {
+          queryForOrders();
+        }
+      };
+      destroy($scope.orders);
     };
 
   });
 
-}(this.angular, this.Parse));
+}(this.angular));

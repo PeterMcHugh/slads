@@ -78,8 +78,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="player in players" ng-click="openPlayerModal(player)">
-            <td ng-bind="player.getFirstName()"></td>
-            <td ng-bind="player.getLastName()"></td>
+            <td ng-bind="player.firstName"></td>
+            <td ng-bind="player.lastName"></td>
           </tr>
         </tbody>
       </table>
@@ -100,7 +100,7 @@
           <tr>
             <td ng-bind="$index+1"></td>
             <td ng-bind="order.getUser().get('username')"></td>
-            <td ng-bind="order.getContent()"></td>
+            <td ng-bind="order.content"></td>
           </tr>
         </tbody>
       </table>

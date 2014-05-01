@@ -7,19 +7,17 @@
 
     $scope.formError = '';
 
-    if (parseService.currentUser() !== null) {
+    if (parseService.currentUser()) {
       $location.path('/main');
     }
 
     $scope.login = function (username, password) {
-      parseService.login(username, password, {
-        success: function () {
-          $scope.formError = '';
-          $location.path('/main');
-        },
-        error: function (user, error) {
-          $scope.formError = error.message;
-        }
+      parseService.login(username, password)
+      .success(function () {
+        $scope.formError = '';
+        $location.path('/main');
+      }).error(function (data) {
+        $scope.formError = data.error;
       });
     };
   });
