@@ -8,25 +8,25 @@
     $routeProvider
     .when('/', {templateUrl: 'views/login.html', controller: 'LoginCtrl', resolve: {
       //Show login page only when user is not logged in, otherwise redirect before rendering
-      auth: function($q, parseService, $location) {
+      auth: ['$q', 'parseService', '$location', function($q, parseService, $location) {
         var isAuth = $q.defer();
         parseService.currentUser(function () {
           isAuth.reject();
           $location.path('/main');
         }, isAuth.resolve);
         return isAuth.promise;
-      }
+      }]
     }})
     .when('/main', {templateUrl: 'views/main.html', controller: 'MainCtrl', resolve: {
       //Show main page only when user is logged in, otherwise redirect before rendering
-      auth: function($q, parseService, $location) {
+      auth: ['$q', 'parseService', '$location', function($q, parseService, $location) {
         var isAuth = $q.defer();
         parseService.currentUser(isAuth.resolve, function () {
           isAuth.reject();
           $location.path('/');
         });
         return isAuth.promise;
-      }
+      }]
     }})
     .when('/modal', {templateUrl: 'views/modal.html'})
     .otherwise({redirectTo: '/'});
