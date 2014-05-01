@@ -19,6 +19,7 @@ module.exports = function(config) {
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-strap/dist/angular-strap.js',
       'app/bower_components/angular-strap/dist/angular-strap.tpl.js',
+      'app/bower_components/angular-animate/angular-animate.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
