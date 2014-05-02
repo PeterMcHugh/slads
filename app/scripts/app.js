@@ -61,7 +61,8 @@
   app.factory('model', function ($http, $resource) {
     return {
       User: $resource(API + '/users/:id', {id: '@objectId'}, {
-        me: {method: 'GET', url: API + '/users/me'}
+        me: {method: 'GET', url: API + '/users/me'},
+        update: {method: 'PUT'}
       }),
       Player: $resource(API + '/classes/Player/:id', {id: '@objectId'}, {
         update: {method: 'PUT'}
