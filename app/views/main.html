@@ -62,12 +62,13 @@
       <h1>Matches</h1>
       <table class="table table-hover">
         <thead>
-          <tr><th>#</th><th>Match</th></tr>
+          <tr><th>#</th><th>Match</th><th>Date Added</th></tr>
         </thead>
         <tbody>
-          <tr ng-repeat="match in matches" class="text-center" ng-click="openMatchModal(match)">
+          <tr ng-repeat="match in matches | orderBy:'createdAt'" class="text-center" ng-click="openMatchModal(match)">
             <td ng-bind="$index+1"></td>
             <td ng-bind="matchData(match)"></td>
+            <td ng-bind="match.createdAt | date:'dd-MM-yy'"></td>
           </tr>
         </tbody>
       </table>
