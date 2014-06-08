@@ -67,7 +67,7 @@
       Player: $resource(API + '/classes/Player/:id', {id: '@objectId'}, {
         update: {method: 'PUT'}
       }),
-      Match: $resource(API + '/classes/Match/:id', {id: '@objectId', include: 'winner,loser'}, {
+      Match: $resource(API + '/classes/Match/:id', {id: '@objectId', include: 'winner,loser', limit: '1000'}, {
         update: {method: 'PUT'}
       }),
       Order: $resource(API + '/classes/Order/:id', {id: '@objectId'})
